@@ -35,4 +35,5 @@ Live demo: https://amazon-clone-gla.vercel.app/
 
 - The project uses Vite and React 18.
 - Font Awesome is loaded from CDN via `index.html`.
+- The UI is responsive and optimized for desktop, tablet, and mobile screens.
 - The legacy `style.html` and `style.css` files were removed.

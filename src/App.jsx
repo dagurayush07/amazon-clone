@@ -1,3 +1,5 @@
+const navLinks = ['Today Deals', 'Gift Cards', 'Sell', 'Prime Video', 'Customer Service'];
+
 const boxItems = [
   { title: 'Clothes', image: '/box1_image.jpg' },
   { title: 'Health and Personal Care', image: '/box2_image.jpg' },
@@ -12,81 +14,96 @@ const boxItems = [
 function App() {
   return (
     <div className="app">
-      <header>
+      <header className="header">
         <div className="navbar">
-          <div className="nav-logo border">
+          <a href="#" className="nav-logo" aria-label="Amazon Clone logo">
             <div className="logo" />
-          </div>
-          <div className="nav-address border">
-            <p className="add-first">Deliver to</p>
-            <div className="add-icon">
-              <i className="fa-solid fa-location-dot" />
-              <p className="add-sec">India</p>
+          </a>
+
+          <div className="nav-address">
+            <span className="nav-label">Deliver to</span>
+            <div className="address-row">
+              <i className="fa-solid fa-location-dot" aria-hidden="true" />
+              <span>India</span>
             </div>
           </div>
-          <div className="nav-search">
-            <select className="select-first">
+
+          <form className="nav-search" role="search" aria-label="Search Amazon">
+            <label htmlFor="search" className="sr-only">
+              Search Amazon
+            </label>
+            <select className="select-first" aria-label="Search category">
               <option>All</option>
             </select>
-            <input placeholder="Search Amazon" className="input-first" />
-            <div className="search-icon">
+            <input id="search" type="search" className="input-first" placeholder="Search Amazon" />
+            <button type="submit" className="search-icon" aria-label="Search">
               <i className="fa-sharp fa-solid fa-magnifying-glass" />
-            </div>
-          </div>
-          <div className="nav-signin border">
-            <p>
-              <span>Hello, sign in</span>
-            </p>
-            <p className="nav-acc">Accounts &amp; Lists</p>
-          </div>
-          <div className="nav-return border">
-            <p>
-              <span>Returns</span>
-            </p>
-            <p className="nav-acc">& Orders</p>
-          </div>
-          <div className="nav-cart border">
-            <i className="fa-solid fa-cart-shopping" />
-            Cart
+            </button>
+          </form>
+
+          <div className="nav-actions">
+            <a href="#" className="nav-action">
+              <span className="nav-label">Hello, sign in</span>
+              <strong>Accounts &amp; Lists</strong>
+            </a>
+            <a href="#" className="nav-action">
+              <span className="nav-label">Returns</span>
+              <strong>&amp; Orders</strong>
+            </a>
+            <a href="#" className="nav-cart">
+              <i className="fa-solid fa-cart-shopping" aria-hidden="true" />
+              <span>Cart</span>
+            </a>
           </div>
         </div>
 
-        <div className="panel">
-          <div className="panel-all">
-            <i className="fa-solid fa-bars" />
+        <nav className="panel" aria-label="Primary navigation">
+          <button className="panel-all" type="button">
+            <i className="fa-solid fa-bars" aria-hidden="true" />
             All
+          </button>
+
+          <div className="panel-links">
+            {navLinks.map((link) => (
+              <a key={link} href="#" className="panel-link">
+                {link}
+              </a>
+            ))}
           </div>
-          <div className="panel-1">
-            <p>Today Deals</p>
-            <p>Gifts Cards</p>
-            <p>Sell</p>
-            <p>Prime Video</p>
-            <p>Customer Service</p>
-          </div>
-          <div className="deals">Shop Deals</div>
-        </div>
+
+          <a href="#" className="deals">
+            Shop Deals
+          </a>
+        </nav>
       </header>
 
-      <div className="hero">
-        <div className="hero-heading">
-          <p>
-            You are on amazon.com. You can also shop on Amazon India for millions of products with fast local delivery.{' '}
-            <a href="#">Click here to go to amazon.in</a>
-          </p>
-        </div>
-      </div>
-
-      <div className="shop-section">
-        {boxItems.map((box) => (
-          <div key={box.title} className="box">
-            <div className="box-content">
-              <h2>{box.title}</h2>
-              <div className="box-img" style={{ backgroundImage: `url('${box.image}')` }} />
-              <a href="#">Shop Now</a>
-            </div>
+      <main>
+        <section className="hero">
+          <div className="hero-copy">
+            <p>
+              You are on amazon.com. You can also shop on Amazon India for millions of products with fast local delivery.
+              <a href="#">Click here to go to amazon.in</a>
+            </p>
           </div>
-        ))}
-      </div>
+        </section>
+
+        <section className="shop-section" aria-label="Product categories">
+          {boxItems.map((box) => (
+            <article key={box.title} className="box">
+              <div className="box-img" style={{ backgroundImage: `url('${box.image}')` }} />
+              <div className="box-content">
+                <h2>{box.title}</h2>
+                <a href="#">Shop Now</a>
+              </div>
+            </article>
+          ))}
+        </section>
+      </main>
+
+      <footer className="footer">
+        <p>Amazon Clone — responsive React + Vite project</p>
+        <p>Built for deployment on Vercel and optimized for desktop, tablet, and mobile.</p>
+      </footer>
     </div>
   );
 }
