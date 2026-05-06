@@ -13,6 +13,16 @@ A simple React/Vite conversion of the existing Amazon clone UI.
    npm run dev
    ```
 
+## Deployment
+
+This project is configured for Vercel deployment.
+
+- Build command: `npm run vercel-build`
+- Output directory: `dist`
+- Vercel config file: `vercel.json`
+
+Live demo: https://amazon-clone-gla.vercel.app/
+
 ## Project structure
 
 - `index.html` - Vite entrypoint
