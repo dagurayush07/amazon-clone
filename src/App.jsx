@@ -1,110 +1,54 @@
-const navLinks = ['Today Deals', 'Gift Cards', 'Sell', 'Prime Video', 'Customer Service'];
-
-const boxItems = [
-  { title: 'Clothes', image: '/box1_image.jpg' },
-  { title: 'Health and Personal Care', image: '/box2_image.jpg' },
-  { title: 'Furniture', image: '/box3_image.jpg' },
-  { title: 'Smartphones', image: '/box4_image.jpg' },
-  { title: 'Beauty Picks', image: '/box5_image.jpg' },
-  { title: 'Pets', image: '/box6_image.jpg' },
-  { title: 'Drawings', image: '/box7_image.jpg' },
-  { title: 'Fashion', image: '/box8_image.jpg' }
-];
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { ShopProvider } from './context/ShopContext.jsx';
+import Header from './components/Header.jsx';
+import Footer from './components/Footer.jsx';
+import Home from './pages/Home.jsx';
+import Shop from './pages/Shop.jsx';
+import ProductDetails from './pages/ProductDetails.jsx';
+import Cart from './pages/Cart.jsx';
+import Wishlist from './pages/Wishlist.jsx';
+import Checkout from './pages/Checkout.jsx';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
+import Profile from './pages/Profile.jsx';
+import Orders from './pages/Orders.jsx';
+import AdminDashboard from './pages/AdminDashboard.jsx';
+import AdminProducts from './pages/AdminProducts.jsx';
+import AdminOrders from './pages/AdminOrders.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 function App() {
   return (
-    <div className="app">
-      <header className="header">
-        <div className="navbar">
-          <a href="#" className="nav-logo" aria-label="Amazon Clone logo">
-            <div className="logo" />
-          </a>
+    <ShopProvider>
+      <BrowserRouter>
+        <div className="w-full min-h-screen bg-[#0f172a] text-slate-100" style={{ width: '100%', minHeight: '100vh' }}>
+          <Header />
 
-          <div className="nav-address">
-            <span className="nav-label">Deliver to</span>
-            <div className="address-row">
-              <i className="fa-solid fa-location-dot" aria-hidden="true" />
-              <span>India</span>
-            </div>
-          </div>
+          <main className="pt-6">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/products" element={<AdminProducts />} />
+              <Route path="/admin/orders" element={<AdminOrders />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
 
-          <form className="nav-search" role="search" aria-label="Search Amazon">
-            <label htmlFor="search" className="sr-only">
-              Search Amazon
-            </label>
-            <select className="select-first" aria-label="Search category">
-              <option>All</option>
-            </select>
-            <input id="search" type="search" className="input-first" placeholder="Search Amazon" />
-            <button type="submit" className="search-icon" aria-label="Search">
-              <i className="fa-sharp fa-solid fa-magnifying-glass" />
-            </button>
-          </form>
-
-          <div className="nav-actions">
-            <a href="#" className="nav-action">
-              <span className="nav-label">Hello, sign in</span>
-              <strong>Accounts &amp; Lists</strong>
-            </a>
-            <a href="#" className="nav-action">
-              <span className="nav-label">Returns</span>
-              <strong>&amp; Orders</strong>
-            </a>
-            <a href="#" className="nav-cart">
-              <i className="fa-solid fa-cart-shopping" aria-hidden="true" />
-              <span>Cart</span>
-            </a>
-          </div>
+          <Footer />
+          <Toaster position="top-right" toastOptions={{ duration: 2500 }} />
         </div>
-
-        <nav className="panel" aria-label="Primary navigation">
-          <button className="panel-all" type="button">
-            <i className="fa-solid fa-bars" aria-hidden="true" />
-            All
-          </button>
-
-          <div className="panel-links">
-            {navLinks.map((link) => (
-              <a key={link} href="#" className="panel-link">
-                {link}
-              </a>
-            ))}
-          </div>
-
-          <a href="#" className="deals">
-            Shop Deals
-          </a>
-        </nav>
-      </header>
-
-      <main>
-        <section className="hero">
-          <div className="hero-copy">
-            <p>
-              You are on amazon.com. You can also shop on Amazon India for millions of products with fast local delivery.
-              <a href="#">Click here to go to amazon.in</a>
-            </p>
-          </div>
-        </section>
-
-        <section className="shop-section" aria-label="Product categories">
-          {boxItems.map((box) => (
-            <article key={box.title} className="box">
-              <div className="box-img" style={{ backgroundImage: `url('${box.image}')` }} />
-              <div className="box-content">
-                <h2>{box.title}</h2>
-                <a href="#">Shop Now</a>
-              </div>
-            </article>
-          ))}
-        </section>
-      </main>
-
-      <footer className="footer">
-        <p>Amazon Clone — responsive React + Vite project</p>
-        <p>Built for deployment on Vercel and optimized for desktop, tablet, and mobile.</p>
-      </footer>
-    </div>
+      </BrowserRouter>
+    </ShopProvider>
   );
 }
 

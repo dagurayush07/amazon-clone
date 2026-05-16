@@ -1,6 +1,6 @@
-# Amazon Clone React Project
+# Ecommerce Shopping Site
 
-A simple React/Vite conversion of the existing Amazon clone UI.
+A simple React/Vite project implementing an ecommerce shopping UI.
 
 ## Setup
 
@@ -21,7 +21,7 @@ This project is configured for Vercel deployment.
 - Output directory: `dist`
 - Vercel config file: `vercel.json`
 
-Live demo: https://amazon-clone-gla.vercel.app/
+Live demo: https://ecommerce-shopping-site-gla.vercel.app/
 
 ## Project structure
 
